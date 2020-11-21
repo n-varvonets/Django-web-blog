@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}<!--можем обращаться к основному шаблону что бы не менять статическую структуру,а только лишь линамическую-->
+
+{% block title %}Новости на сайте{% endblock %}<
+
+{% block content %}
+
+<div class="features">
+    <h1>Новости на сайте</h1>
+    {% if news %}
+    <!--добавим условие, если есть записи, то выводим наши данные, если нет, то выводим строку, что нет записей-->
+    {% for el in news %}
+    <div class="alert alert-dark"><!-- div для выделения след данных в один блок, не по всему сайту-->
+        <h3>{{ el.title }}</h3>
+        <p>{{ el.anons }}</p>
+        <a href="{% url 'news-detail' el.id  %}" class="btn btn-warning">Читать детальнее</a>
+        <a href="{% url 'news-update' el.id  %}" class="btn btn-success">Редактировать</a>
+        </div>
+
+
+    {% endfor %}
+    {% else %}
+    <p>Нет новых записей</p>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <head>
     <meta charset="UTF-8">
@@ -7,40 +6,29 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
-
-    <!--подключаем будстрап-->
+    <!--add bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!--работаем с ДЖиджа и достаем статич.файл-->
+    <!--working with Jinja and get a static file.-->
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-
-    <!--подключаем возможность пользовать иконками сайта Font Awesome  от бутстрапа-->
+    <!--connect the opportunity to use icons of the site Font Awesome from bootstrap-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
 </head>
 <body>
-<!--добавим боковую панель, данные на странцах будут неизменны-->
+<!--add a side panel-->
 <aside>
-    <!--подклюим картинку, точно такче как и ссs файлы, using Jinja-->
-    <img src="{% static 'main/img/1.jpg' %}" alt="в alt любой текст, как доп описание к картинке">
-
-    <!--добавим лого-->
+    <img src="{% static 'main/img/1.jpg' %}" alt="">
     <span class="logo"><big>DJ_bet</big></span>
-
-    <big><h3>Навигация</h3></big>
-
-    <!--быстро создать таблицу ul>li*3 + (press tab)-->
+    <big><h3>Navigation</h3></big>
     <ul>
-        <a href="{% url 'home' %}"><li><i class="fas fa-home"></i> Главная</li></a><!--можно через абс адрес указать(<a href="/">),можно без jinja({home}), но с точки джанго правильно будет указать через имя присвоенного в main/url-->
-        <a href="{% url 'about' %}"><li><i class="fas fa-question"></i> Про нас</li></a>
-        <a href="{% url 'news_home' %}"><li><i class="far fa-newspaper"></i> Новости</li></a>
-        <a href="{% url 'contacts' %}"><li><i class="far fa-address-book"></i> Контакты</li></a>
-        <a href="{% url 'settings' %}"><li><i class="fas fa-sliders-h"></i> Настройки</li></a>
-        <a href="{% url 'create' %}"><li><button  class="btn btn-info"><i class="fas fa-plus-square"></i> Добавить запись</li></a>
+        <a href="{% url 'home' %}"><li><i class="fas fa-home"></i> Home</li></a>
+        <a href="{% url 'about' %}"><li><i class="fas fa-question"></i> About us</li></a>
+        <a href="{% url 'news_home' %}"><li><i class="far fa-newspaper"></i> Articles</li></a>
+        <a href="{% url 'contacts' %}"><li><i class="far fa-address-book"></i> Contacts</li></a>
+        <a href="{% url 'settings' %}"><li><i class="fas fa-sliders-h"></i> Settings</li></a>
+        <a href="{% url 'create' %}"><li><button  class="btn btn-info"><i class="fas fa-plus-square"></i> Add an article</li></a>
     </ul>
 </aside>
-
-<!--добавим оснвную панель, внутри которой будет динамическая часть-->
 <main>
     {% block content %}
     {% endblock %}

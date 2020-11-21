@@ -1,34 +1,25 @@
 # -*- coding: utf-8 -*-
-# создал этот файл для того что бы свзяать файл create/форму для связи с БД(модели Articles), которую опишем внутри этого файла
-
-# логично нужно импортировать таблицу из БД(модель Articles)
 from .models import Articles
 from django.forms import ModelForm, TextInput, DateTimeInput, Textarea
 
 
+class ArticlesForm(ModelForm):
+    """inside the Meta class we specify the characteristics of the table,
+     which we then pass to views for display in create.html"""
 
-'''Класс можно назвать как угодно, но обычно это название модели и в конце Form'''
-class ArticlesForm(ModelForm):  #  +наследуемся от импортируемого класса
-    '''внутри класса немобхоимо создать вложенный класс Meta, внутри которого указываем характеристики таблицы'''
     class Meta:
-        model = Articles #  указываем с какой моделью/таблицой мы работаем
-        fields = ['title', 'anons', 'full_text', 'date'] # указываем какие поля должны быть выведены внутри формы
-
-        # прежде чем это всё тестировать , необходимо создать обьект на основе этого класса и передать его
-        # в сам шаблон(для отображения формы связи с нужной для нас таблицы/модели). Во views созхдаем этот обьект.
-
-        '''указываем как отоброжать наши данные в html с помощью атрибутов placeholder, class, etc.., таким же образом как и create.html'''
+        model = Articles
+        fields = ['title', 'anons', 'full_text', 'date']  # specify which fields should be rendered inside the form
         widgets = {
-            'title' : TextInput(attrs={
-                'class' : 'form-control',
-                'placeholder': 'Title of article' # почему с русским тектом не отоброжается поле
-
+            'title': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Title of article'
 
             }),
             'anons': TextInput(attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Anons of article'
-                }),
+                'class': 'form-control',
+                'placeholder': 'Anons of article'
+            }),
             'full_text': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Full text of article'
@@ -39,5 +30,3 @@ class ArticlesForm(ModelForm):  #  +наследуемся от импортир
 
             })
         }
-
-

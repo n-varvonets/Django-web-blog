@@ -1,16 +1,16 @@
 {% extends 'main/layout.html' %}
 
-{% block title %}Удаление статьи{% endblock %}<
+{% block title %}Deleting an article{% endblock %}<
 
 {% block content %}
 
 <div class="features">
-    <h1>Удаление статьи</h1>
+    <h1>Delete article</h1>
     <div class="alert alert-dark">
-        <p><big>Удалить статью:  "{{ article_delete.title }}" ?</big></p>
+        <p><big>Delete article: "{{ article_delete.title }}" ?</big></p>
         <form method="post">
-            {% csrf_token %} <!--обьязательный атрибут в Джанго для работы с формами-->
-            <button class="btn btn-danger" type="submit">Подтвердить удаление</button>
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Confirm deletion</button>
         </form>
     </div>
 </div>

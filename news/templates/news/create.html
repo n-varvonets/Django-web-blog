@@ -1,34 +1,18 @@
 {% extends 'main/layout.html' %}
 
-{% block title %}Форма по добавлении статьи{% endblock %}<
+{% block title %}Add article{% endblock %}<
 
 {% block content %}
 
 <div class="features">
-    <h1>Форма по добавлении статьи</h1>
-    <form method="post"> <!--action="/news/check - на какой страницу будет обработка данных, если не указать, а я именно так и делаю, то обработка данных будет на этой же странице-->
-        {% csrf_token %} <!--обьязательный атрибут в Джанго для работы с формами-->
-
-        <!-- можно просто вывести форму с полями из БД след.образом:
-        {{ form }}
-        ,но будет некрасиво. Можно обработать вывдя по одному полю последовательно и заранее указав(обработав полученные данные с БД)
-        в news/forms наши placeholder, class внутри самого класса ArticlesForm в WIDGETS-->
-
+    <h1>Add your article</h1>
+    <form method="post">
         {{ form.title }}<br>
         {{ form.anons }}<br>
         {{ form.full_text }}<br>
         {{ form.date }}<br>
         <span>{{ error }}</span><br><br>
-
-        <!-- создадал первоночальное красивое поле, но  МИНУС этого - с ним я не взаоимдействоавал с БД,
-        как с полем выше, который уже написал после и создал спец форму-связи с БД
-        <input type="text" placeholder="Название статьи" class="form-control"><br>
-        <input type="text" placeholder="Анонс статьи" class="form-control"><br>
-        <textarea placeholder="Содержимое статьи" class="form-control"></textarea><br>
-        <input type="date" class="form-control"><br>
-        <input type="time" class="form-control"><br>-->
-        <button class="btn btn-success" type="submit">Добавить новую статью</button>
-
+        <button class="btn btn-success" type="submit">Add a new article</button>
     </form>
 </div>
 {% endblock %}

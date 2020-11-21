@@ -2,71 +2,49 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
-from .models import Articles  # что бы достать данные с БД, необходжимо импортировать с модели(связь с БД) нашу табличку
-from .forms import ArticlesForm  # что бы создать обьект для свзи формы с БД импортируем класс/таблицу в данными из БД
-from django.views.generic import DetailView, UpdateView, DeleteView  # для второго спсоба  манипулаяции записями, которые находятся в БД
-
-'''в джанго есть 2 способа для манипулаяции записями, которые находятся в БД'''
-
-'''1ый - создать свою функцию, где берем все записи из табл. БД(из созданной модели), сортируем и отображаем по ключу в html '''
+from .models import Articles
+from .forms import ArticlesForm
+from django.views.generic import DetailView, UpdateView, DeleteView
 
 
 def news_home(request):
-    # news = Articles.objects.all()[:1] # в переменную записал ВСЕ поля+данные и...       + срезом можно поставить ограничение вывода записей
-    news = Articles.objects.order_by('-date')  # можно отсортировать по дате (минус нужен что бы поменять порядок)
-    return render(request, 'news/news_home.html', {
-        "news": news})  # ...передаю 3м парметром в шаблон (как определенный ключ) + необходимо его(этот 3ий параметр) указать в шаблоне
-
-
-'''2ой - создать класс, что наследуется от встроеенного класса джанга для создания ДИНАМИЧЕСКОЙ страницы(каждой отдельной статьи)'''
+    news = Articles.objects.order_by('-date')
+    return render(request, 'news/news_home.html', {"news": news})
 
 
 class NewsDetailView(DetailView):
-    model = Articles  # говроим с какой моделью мы будем работать
-    template_name = 'news/details_view.html'  # указываю какой шаблон будет обрабатывать 2ой способ манипуляции
-    context_object_name = 'article_of_class_NewsDetailView'  # название ключа, по которому мы будем передавать запись внутрь шаблона
-    # переходим news/urls.py для создания ДИНАИЧЕСКОГо шаблона
+    model = Articles
+    template_name = 'news/details_view.html'
+    context_object_name = 'article_of_class_NewsDetailView'
 
 
 class NewsUpdateView(UpdateView):
     model = Articles
-    template_name = 'news/create.html'  # используем такой же шаблон что и при создании(потому что там все те же поля используются что и при редактировании)
-
-    # fields = ['title', 'anons', 'full_text', 'date']  # можем указать какие поля будут находиться в форме
-    '''укажем какой класс будет использоваться для отображении формы'''
-    form_class = ArticlesForm  # ведь мы ужев классе прописали все необходимые характеристики
-    '''при добавляем появилась ошибка"No URL to redirect to.  Either provide a url or define a get_absolute_url method
-     on the Model.", поэтому переходим в model.py  и создаем этот метода'''
+    template_name = 'news/create.html'
+    form_class = ArticlesForm
 
 
 class NewsDeleteView(DeleteView):
     model = Articles
     context_object_name = 'article_delete'
-    success_url = '/news/'  # указываем куда будем переадресовывать пользователя после успешного удаления
-    template_name = 'news/delete.html'  # добавим доп страницу, где будем предупреждать ползователя "точно ли он хочет удалить статью" и если да, то удаляем(пример шаблона взят из create.html)
+    success_url = '/news/'
+    template_name = 'news/delete.html'
 
 
 def create(request):
-    '''получение и обработка данных из формы(create.html), а потом отображение'''
-    error = ''  # создадим пустую переменную,  которую заполним в случае ошибки пост
-    if request.method == 'POST':  # в форме из create.html мы указали метод пост(т.е. получили даныне), и если происходит этот метод, то
-        form = ArticlesForm(
-            request.POST)  # здесь создается такой же обьект, только в этом обьекте будут все данные от клиент, а не пустая строка для ввода как первоначально снизу
-        # ну и необходимо проверить являются ли данные коректно заполнены
+    '''receive and process data from the form (create.html), and then rendered it'''
+    error = ''
+    if request.method == 'POST':
+        form = ArticlesForm(request.POST)
         if form.is_valid():
-            # то в таком случае сохраним полученные данные
             form.save()
-            return redirect(
-                'news_home')  # и если все норм, то переадресовываем пользователя на главную страницу(она именнована в main/urls.py)
-        # поля будут заполненны неккоретно, то
+            return redirect('news_home')
         else:
             error = 'Error: Form is incorrect.'
 
-    form = ArticlesForm()  # создаем обьект на основе этого класса/таблицы из БД
-
+    form = ArticlesForm()
     data = {
-        'form': form,  # ключ(который будем передавать в шаблон) и значение - наш обьект/таблица с данными
-        'error': error  # если данные правильные, то это переменная будет пустая
-    }  # создам словарь, который буду передавать в шаблон
-
+        'form': form,
+        'error': error
+    }
     return render(request, 'news/create.html', data)

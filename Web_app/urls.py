@@ -17,12 +17,12 @@ Including another URLconf
 """
 from django.urls import path, include, re_path
 from django.contrib import admin
-from django.conf import settings # for static files
-from django.conf.urls.static import static # for static files
+from django.conf import settings
+from django.conf.urls.static import static
 
 if settings.DEBUG:
     urlpatterns = [
         re_path('^admin/', admin.site.urls),
-        path(r'news/', include('news.urls')),# если мы будем переходить по news, news/1, news/sadwq/...e.r.c., то он будет обрабатываться в приложении news, а не в каком ином другом(типо на данный момент main,about.admin или любой другой кроме news/)
+        path(r'news/', include('news.urls')),
         path(r'', include('main.urls'))
-    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # к основному url добюавим возможность подклбчит статич файлы
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # add an ability to connect static files

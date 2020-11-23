@@ -1,1 +1,2 @@
-worker: gunicorn locallibrary.wsgi --log-file 
+worker: python manage.py --log-file -
+

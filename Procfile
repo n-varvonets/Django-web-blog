@@ -1,2 +1,1 @@
-web: python manage.py --log-file -
-
+web: gunicorn locallibrary.wsgi --log-file -

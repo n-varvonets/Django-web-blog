@@ -28,3 +28,7 @@ def settings(request):
 
 def contacts(request):
     return render(request, 'main/contacts.html')
+
+
+def my_contact(request):
+    return render(request, 'main/my_contact.html')

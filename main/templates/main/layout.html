@@ -16,17 +16,33 @@
 </head>
 <body>
 <!--add a side panel-->
+<div></div>
 <aside>
-    <img src="{% static 'main/img/1.jpg' %}" alt="">
-    <span class="logo"><big>DJ_bet</big></span>
-    <big><h3>Navigation</h3></big>
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-5 m-0 p-0 "><img class="img-fluid" src="{% static 'main/img/1.png' %}" alt=""></div>
+            <div class="col-md-7 m-0 p-0"><p style="font-weight: bold; font-size: 30px;">Blog</p><br></div>
+        </div>
+    </div>
+    <p>Navigation</p>
     <ul>
-        <a href="{% url 'home' %}"><li><i class="fas fa-home"></i> Home</li></a>
-        <a href="{% url 'about' %}"><li><i class="fas fa-question"></i> About us</li></a>
-        <a href="{% url 'news_home' %}"><li><i class="far fa-newspaper"></i> Articles</li></a>
-        <a href="{% url 'contacts' %}"><li><i class="far fa-address-book"></i> Contacts</li></a>
-        <a href="{% url 'settings' %}"><li><i class="fas fa-sliders-h"></i> Settings</li></a>
-        <a href="{% url 'create' %}"><li><button  class="btn btn-info"><i class="fas fa-plus-square"></i> Add an article</li></a>
+        <a href="{% url 'home' %}">
+            <li><i class="fas fa-home"></i> Home</li>
+        </a>
+        <a href="{% url 'about' %}">
+            <li><i class="fas fa-question"></i> About us</li>
+        </a>
+        <a href="{% url 'news_home' %}">
+            <li><i class="far fa-newspaper"></i> Articles</li>
+        </a>
+        <a href="{% url 'contacts' %}">
+            <li><i class="far fa-address-book"></i> Contacts</li>
+        </a>
+        <a href="{% url 'create' %}">
+            <li><big>
+                <button class="btn btn-info"><i class="fas fa-plus-square"></i> Add an article
+           </big> </li>
+        </a>
     </ul>
 </aside>
 <main>
@@ -36,3 +52,4 @@
 
 
 </body>
+</div>

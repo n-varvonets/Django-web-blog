@@ -17,7 +17,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ SECRET_KEY = 'y4xo!pflybnq-&z77+^_772p6z4#zk__h*pmxq!^al%r2%q@du'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Web_app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -83,7 +80,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -103,11 +99,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'ru' # перевли на русский для админ страницы и создаем админа при помощи python manage.py createsuperuser
+LANGUAGE_CODE = 'ru'  # перевли на русский для админ страницы и создаем админа при помощи python manage.py createsuperuser
 
 TIME_ZONE = 'UTC'
 
@@ -117,15 +112,19 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR , 'static')
+    os.path.join(BASE_DIR, 'static')
     # до слеша - укзываем путь к проекту, после - к файлу с статич данными
-   # '/var/www/static/', - этот пункт нужен, когда мы будем выгружать проект на сервер и нам нужна будет папка,которая исключиттельно на сервере
+    # '/var/www/static/', - этот пункт нужен, когда мы будем выгружать проект на сервер и нам нужна будет папка,которая исключиттельно на сервере
 ]
 
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

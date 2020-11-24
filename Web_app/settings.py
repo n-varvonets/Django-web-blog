@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -122,16 +123,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-
+django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR , 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
     # до слеша - укзываем путь к проекту, после - к файлу с статич данными
    # '/var/www/static/', - этот пункт нужен, когда мы будем выгружать проект на сервер и нам нужна будет папка,которая исключиттельно на сервере
-]
+
 

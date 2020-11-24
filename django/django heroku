@@ -1,0 +1,76 @@
+1. Надо пройти регистрацию на heroku. 
+2.The Heroku CLI - sudo snap install --classic heroku
+3. git init
+4. После чего создаем в каталоге проекта файл .gitignore.Пишем этот код:
+
+__pychache__/
+*.pyc
+db.sqlite3
+
+
+git add .
+git commit -m "GIT init"
+
+
+heroku login
+
+heroku create dj-web-proj
+
+6. Дальше создаем несколько файлов, для того что бы heroku понял что мы загружаем и как:
+
+Procfile    --> web: gunicorn Web_app.wsgi --log-file -
+runtime.txt   --> python-3.8.5
+
+pip install gunicorn
+
+pip install gunicorn django-heroku  (без него не видело manage.py после пуша и перед run migrate)
+
+pip install whitenoise
+
+
+7. Теперь переходим в settings.py и делаем следующие изменения:
+
+ALLOWED_HOSTS = ['*']
+
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  (если его удалить, то heroku запустить сайт, но сss не будет работать, но с ним не работает вообще сайт )
+
+8. Настраиваем работу с базой данных. Устанавливаем утилиту для более удобной работы:
+
+pip install dj-database-url
+
+
+переходим опять в settings.py и пишем:
+
+import dj_database_url
+
+
+django_heroku.settings(locals())    (без него не видело manage.py после пуша и перед run migrate)
+
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+
+9. pip freeze -> requirements.txt  (в котором удалил pkg-resources==0.0.0, потому что при push на heroke из-за него падает ошибка и проверил на соответсвие psycopg2==2.8.6)
+
+
+10. Ну и финал, загружаем на сервер.
+
+git add .
+git commit -m "Diploy"
+git push heroku master
+
+
+И пошел процесс загрузки нашего проекта на heroku. Дальше вам в консоль напишет ссылку на наш проект. По ней мы будем переходить потом, а сейчас выполним все миграции:
+
+heroku config:set DISABLE_COLLECTSTATIC=1
+
+
+heroku run python manage.py migrate
+
+
+И создадим super user-а:
+
+heroku run python manage.py createsuperuser

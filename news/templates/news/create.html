@@ -5,8 +5,9 @@
 {% block content %}
 
 <div class="features">
-    <h1>Add your article</h1>
+    <h1 id="form_h1">Add your article</h1>
     <form method="post">
+        {% csrf_token %}
         {{ form.title }}<br>
         {{ form.anons }}<br>
         {{ form.full_text }}<br>

@@ -7,8 +7,8 @@ from django.db import models
 
 
 class Articles(models.Model):
-    title = models.CharField('Name', max_length=50)
-    anons = models.CharField('Anons', max_length=250)
+    title = models.CharField('Name', max_length=100)
+    anons = models.TextField('Anons')
     full_text = models.TextField('Full text')
     date = models.DateTimeField('Date of publication')
 

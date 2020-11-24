@@ -2,13 +2,34 @@
 
 {% block title %}About us{% endblock %}<
 
- {% block content %}
-    <div class="features">
-    <h1>About us</h1>
-    <p>Interesting content about us</p>
+{% block content %}
+<div class="features" id="about">
+    <h1>About me</h1><br>
+
+    <p class="container-fluid text-justify">   At the moment I am just learning Python programming and if you liked my web
+        blog project, you can view the open source code at <a target="_blank" href="https://github.com/n-varvonets">GitHub</a>.
+        You can also find my two previous projects there, <a target="_blank"
+                href="https://github.com/n-varvonets/MyTornadoWebProject-API.git">one</a> of which is I stored the
+        extracted data from a third-party API to the database using MySQL and with the help of the Tornado-web framework
+        rendered them on the site with the ability to specify the required date range. In the<a target="_blank"
+                href="https://github.com/n-varvonets/Web-blogFlask.git"> second</a> project I created a web-blog
+        based on the Flask framework, where you can also add, edit and delete articles.</p>
+    <p class="container-fluid text-justify">   The next step for me will be to creation an online store based on the Django
+        framework with the possibility of authorization and user registration (model - User and Customer), leave
+        comments, making payments online and creating personal store API.</p>
+    <p class="container-fluid text-justify">   In the near future, I see myself as
+        I am a strong Middle Python Developer and I think that in order to rise I need real practice, complete real
+        tasks. So I will leave a link to my <a target="_blank"
+                href="https://drive.google.com/file/d/1n5KAERcS0woc65N83EkaU8QamDZ9fLqD/view?usp=sharing">CV</a> through
+        which you can contact me. </p>
+    <h4>{% include 'main/test_include.html' %}</h4>
 </div>
-<p class="features">{% include 'main/test_include.html' %}</p>
+
 {% endblock %}
+
+
+
+
 
 
 

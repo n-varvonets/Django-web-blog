@@ -2,47 +2,43 @@ body {
     background : #f5f5dc;
 }
 
-
+main .features h1{
+    margin-top:-50px;
+}
 
 aside {
     float: left /* расположение блока*/;
     background:#181818;
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     width:25%;/* ширина блока */
     height:100vh;/* 100% высоты экрана */
     padding:2%;/* отступы блока */
     color: #fff;/* весь текст внутри блока */
     border-right : 5px solid #4d4d4d;/* обводка блока по правой стороне сплошная размером в 5 писилей с таким-то цветом */
+    height: 100vh;
     }
 
-/* укажем что бы картинка была в блоке aside слевйо стороны меньшего размера*/
-aside span {
-    margin-left:30px;
-    color: #f5f5dc;
-    font-weight:bold;
-    font-size: 20px;
-    position: relative;
-    top: 5px;
+aside p{
+    font-size:30px;
+    text-align: center;
 
-}
-aside h3{
-    font-size: 120%;
-    font-weight:bold;
-    position: relative;
-    top: 35px;
-    left: -40px;
 }
 
 main h3{
     font-size:22px;
 }
 
-form{
-    margin-left: 20%;
-    width: 400px;
-    margin-top: 30px;
+form, #form_h1{
+    margin-left: 12%;
+    width: 600px;
+    margin-top: 5px;
 }
 
-
+#det_view{
+    margin-left: 32%;
+    width: 700px;
+    padding: 35px;
+}
 
 aside ul li .btn-info{
     font-size: 12px;
@@ -52,15 +48,17 @@ aside ul li .btn-info{
 }
 
 aside ul li{
-    font-size:14px;
+    font-size:16px;
     list-style:none; /* уберем перед списком кружочки списка*/
     line-height: 2.0;/* изменить интервал между строк*/
     position: relative;
     left: 15px;
-    top:40px;
+    top:5px;
     color: #fff;
     transition: transform .4s ease;/* при наведение плавно увеличивается именно для эвефекта transform(что создал я ниже)*/
 }
+
+
 
 /* добавим еффект при наведение на список hover*/
 aside ul li:hover, aside ul a:hover{
@@ -70,30 +68,31 @@ aside ul li:hover, aside ul a:hover{
 
 }
 
-aside img {
-    width: 70px;
-    float: left
-   }
+#about{
+    width:800px;
+}
 
 /*т.к. в layout.html  есть динамичный блок main, то обращаемся к классу в index.html через его назавние */
 main .features{
+    margin-left: 25%; /* Same as the width of the sidebar */
+    padding: 0px 10px;
     float: left;
     margin-top: 70px;
     text-align: center; /* делаю что бы текст находился по центру */
-    width: 75%; /* хочу что бы этот юлок будет занимать 75%*/
+
 }
 
 .alert-dark{
     float: left;
     clear: both;
-    width: 400px;
-    margin: 20px 24%; /* игра с отступами */
+    width: 700px;
+    margin: 15px 5%; /* игра с отступами */
     text-align: left; /* размещение текста в самом блоке */
 
 }
 
 main .features h1{font-size: 50px} /*изменяю размер заголовка */
-main .features p {max-width: 450px; margin: 20px auto} /* указываю макс ширину текста + margin- доп отступы сверху и снизу 20 писк, а по бокам пусть автоматом проставляется */
+main .features p {max-width: 650px; margin: 20px auto} /* указываю макс ширину текста + margin- доп отступы сверху и снизу 20 писк, а по бокам пусть автоматом проставляется */
 
 
 

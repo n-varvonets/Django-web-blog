@@ -1,46 +1,89 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 
-{% block title %}Главная страница{% endblock %}<
+{% block title %}The main page{% endblock %}<
 
 {% block content %}
 
 <div class="features">
-    <h1>{{ title }}</h1>
+    <h1>Welcome to the website <img src="{% static 'main/img/pngwing.com.png' %}" alt="" width="55"></h1><br>
+    <h5>The main page where I can put some interesting content like this: </h5>
+    <div class="border border-success m-5 bg-light text-dark">
+        <div class="row p-4">
+            <div class="col-md-3">
+                <img class="container-fluid" src="{% static 'main/img/django.jpg' %}" alt="">
+            </div>
+            <div class="col-md-9">
 
-    <!--1)как вывести список в хтмл-->
-  <!--  <p>{%for el in values %}
-        {{ el }}
-        {% endfor %}
-    </p>-->
+                <h3><a target="_blank" class="text-justify "
+                       href="https://djangochat.com/episodes/django-software-foundation-2021-board-nominations-kY1SPnjr">Django
+                    Software Foundation - 2021 Board Nominations</a></h3>
+                <div class="text-justify small">
+                    2021 DSF Board NominationsDjango Software FoundationDSF Individual MembersDjango Forum:
+                    Additional DSF Funding UsesDSF Board Meeting Minutes 2020Support the ShowThis podcast is a labor of
+                    love and does not have any ads or sponsors....
+                </div>
+                <a target="_blank" class="link-readmore small"
+                                    href="https://djangochat.com/episodes/django-software-foundation-2021-board-nominations-kY1SPnjr">Read
+                    this post in context</a><br>
+            </div>
+        </div>
+    </div>
+    <div class="border border-info m-5 bg-dark text-white">
+        <div class="row p-4">
+            <div class="col-md-3">
+                <img class="container-fluid" src="{% static 'main/img/batman.jpeg' %}" alt="">
+            </div>
+            <div class="col-md-9">
+                <h3 class="entry-title td-module-title"><a target="_blank"
+                        href="https://batman-news.com/2020/11/21/bronze-batman-statue/" rel="bookmark"
+                        title="Bronze Batman statue lands at AMC Walkway in Downtown Burbank">Bronze Batman statue
+                    lands at AMC Walkway in Downtown Burbank</a></h3>
+                <div class="text-justify text-white small">
+                    It may not be Gotham City, but that doesn’t mean Batman shouldn’t be honored with a bronze statue
+                    all the same.Measuring seven-and-a-half feet tall and weighing in at 600 pounds, a bronze statue of Batman has
+                    been added to the AMC Walkway in Downtown Burbank....
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!--2)как вывести словарь в html--><!--{{ dict_obj }} : таким образом можно вывести весь словкарь,
+
+<!--1)как вывести список в хтмл-->
+<!--  <p>{%for el in values %}
+      {{ el }}
+      {% endfor %}
+  </p>-->
+
+<!--2)как вывести словарь в html--><!--{{ dict_obj }} : таким образом можно вывести весь словкарь,
      а при помощи цикла...   так же можно вывести просто один эелемент: {{ dict_obj.age }}-->
- <!--   <p>{%for el in dict_obj %}
-        {{ el }}
-        {% endfor %} </p>-->
+<!--   <p>{%for el in dict_obj %}
+       {{ el }}
+       {% endfor %} </p>-->
 
-    <!--3)можно добавить условие в список/словарь -->
- <!--   {%for key, value in dict_obj.items %}
-    обьязательно если работаем с ключ/значение, то перебираем словарь.iterms
-    {% if key == 'age' %}
-    <p> {{"3.)можно добавить услвие в шаблон и если ключ/значение словаря удовлтворяет условие, то выводим на принт (в
-        index.html). В данном случае если key равняется age, то принтуем key + value: "}}{{ key }}{{ ' = ' }}{{ value }}
-    </p> {% endif %}
-    {% endfor %}-->
+<!--3)можно добавить условие в список/словарь -->
+<!--   {%for key, value in dict_obj.items %}
+   обьязательно если работаем с ключ/значение, то перебираем словарь.iterms
+   {% if key == 'age' %}
+   <p> {{"3.)можно добавить услвие в шаблон и если ключ/значение словаря удовлтворяет условие, то выводим на принт (в
+       index.html). В данном случае если key равняется age, то принтуем key + value: "}}{{ key }}{{ ' = ' }}{{ value }}
+   </p> {% endif %}
+   {% endfor %}-->
 
-    <!--4)можно использовать фильтры (есть 2 способа)-->
-  <!--  4.)можно использовать фильтры (есть 2 способа): <br>
-    <p>4.1ый: {% filterupper знак_процента}__вывод данных__{% endfilter знак_процента}.Как результат все в
-        загдлавном </p>
-    {%for el in values %}
-    {% filter upper%}
-    {{ el }}
-    {% endfilter %}
-    {% endfor %} <br>
-     <p>4.2ой: при выводе на печать эелемента указать вертикальеную черточку{ { el|lower }}.Как результат:.</p>
-    {%for el in values %}
-    {{ el|lower }}
-    {% endfor %} <br>-->
+<!--4)можно использовать фильтры (есть 2 способа)-->
+<!--  4.)можно использовать фильтры (есть 2 способа): <br>
+  <p>4.1ый: {% filterupper знак_процента}__вывод данных__{% endfilter знак_процента}.Как результат все в
+      загдлавном </p>
+  {%for el in values %}
+  {% filter upper%}
+  {{ el }}
+  {% endfilter %}
+  {% endfor %} <br>
+   <p>4.2ой: при выводе на печать эелемента указать вертикальеную черточку{ { el|lower }}.Как результат:.</p>
+  {%for el in values %}
+  {{ el|lower }}
+  {% endfor %} <br>-->
 
 
 </div>

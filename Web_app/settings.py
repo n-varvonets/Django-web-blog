@@ -122,7 +122,7 @@ django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -132,7 +132,7 @@ STATICFILES_DIRS = [
     # до слеша - укзываем путь к проекту, после - к файлу с статич данными
     # '/var/www/static/', - этот пункт нужен, когда мы будем выгружать проект на сервер и нам нужна будет папка,которая исключиттельно на сервере
 ]
-=======
+
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
@@ -140,7 +140,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
     # до слеша - укзываем путь к проекту, после - к файлу с статич данными
    # '/var/www/static/', - этот пункт нужен, когда мы будем выгружать проект на сервер и нам нужна будет папка,которая исключиттельно на сервере
 
->>>>>>> 42fd72072571edefc1dbd7159a3d0da449180b78
+
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url

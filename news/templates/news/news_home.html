@@ -4,12 +4,12 @@
 
 {% block content %}
 
-<div class="features">
+<div class=" features">
     <h1>Articles:</h1>
     {% if news %}
     <!--add a condition if there are no new articles-->
     {% for el in news %}
-    <div class="alert alert-dark">
+    <div class="col-12 alert alert-dark">
         <h3>{{ el.title }}</h3>
         <p>{{ el.anons }}</p>
         <a href="{% url 'news-detail' el.id  %}" class="btn btn-warning">Read more</a>
